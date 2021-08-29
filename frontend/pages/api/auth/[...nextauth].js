@@ -1,5 +1,5 @@
 import NextAuth from 'next-auth';
-import Providers from 'next-auth/providers/providers';
+import Providers from 'next-auth/providers';
 
 const options = {
   providers: [
@@ -22,7 +22,7 @@ const options = {
       const isSignIn = user ? true : false;
       if (isSignIn) {
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_DATABASE_URL}/auth/${account.provider}/callback?access_token=${account.accessToken}`
+          `${process.env.NEXT_PUBLIC_API_URL}/auth/${account.provider}/callback?access_token=${account.accessToken}`
         );
         const data = await response.json();
         token.jwt = data.jwt;
